@@ -1,3 +1,7 @@
+"""
+Entrainement de la FC de NASNetMobile sur la base AF11
+"""
+
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -30,8 +34,8 @@ TRAIN_ALL_PLOT_PATH = os.path.sep.join(["NASNetMobile", "train.png"])
 
 
 # chemins vers les repertoires train, val et test
-trainPath = os.path.sep.join([BASE_PATH, BASE_PATH+TRAIN])
-testPath = os.path.sep.join([BASE_PATH, BASE_PATH+TEST])
+trainPath = os.path.sep.join(['../' + BASE_PATH, BASE_PATH+TRAIN])
+testPath = os.path.sep.join(['../'  + BASE_PATH, BASE_PATH+TEST])
 
 # nbr total des image dans chacun des repo train test
 totalTrain = len(list(paths.list_images(trainPath)))
@@ -99,12 +103,3 @@ H = model.fit_generator(
     epochs=epochs)
 
 model.save('NASNetMobile\\FCtrain.model')
-
-"""
-from keras.models import load_model
-
-model = load_model('NASNetMobile\\FCtrain.model')
-
-for layer in model.layers:
-    print("{}: {}".format(layer, layer.trainable))
-"""
