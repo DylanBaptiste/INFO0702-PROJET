@@ -6,17 +6,13 @@ Entrainement de NASNetMobile apres avoir entrainé la FC
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-import pandas as pd
 import os
+
 from imutils import paths
 import numpy as np 
-from keras.preprocessing.image import ImageDataGenerator
-from keras.models import load_model
-from keras.applications import NASNetMobile
-from keras.models import Model
-from keras.layers import Dense, Dropout, Conv2D, InputLayer, Input, MaxPooling2D, Flatten, Concatenate, GlobalAveragePooling2D
-from keras.optimizers import Adam
-from keras.models import load_model
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.models import load_model
+from tensorflow.keras.optimizers import Adam
 
 img_rows, img_cols = 224, 224
 channels = 3
@@ -70,7 +66,7 @@ testAug.mean = mean
 
 
 # recherche du batchsize "optimal"
-epochs = 1
+epochs = 20
 batchs_size = [128, 64, 32]
 
 for batch_size in batchs_size:
