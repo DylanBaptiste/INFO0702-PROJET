@@ -81,8 +81,16 @@ for batch_size in batchs_size:
     print("[INFO] chargement fini.")
     
     # degelé toutes les couches sauf les premieres
-    for layer in model.layers[249:]:
-        layer.trainable = True
+    model.trainable = True
+    set_trainable = False
+    for layer in model.layers:
+        if layer.name == 'activation_253':
+            set_trainable = True
+        if set_trainable:
+            layer.trainable = True
+        else:
+            layer.trainable = False
+        print("layer {} is {}".format(layer.name, '+++trainable' if layer.trainable else '---frozen'))
     
     # compiler le nouveau model
     model.compile(loss='categorical_crossentropy', optimizer=Adam(learning_rate=0.001), metrics=['accuracy'])
@@ -98,7 +106,7 @@ for batch_size in batchs_size:
     plt.xlabel("Epochs")
     plt.ylabel("accuracy")
     plt.legend()
-    fig.savefig('NASNetMobile_{}_epoch_{}_batchsize.jpg'.format(epochs, batch_size), bbox_inches='tight', dpi=150)
+    fig.savefig('NASNetMobile_{}_epoch_{}_batchsize2.jpg'.format(epochs, batch_size), bbox_inches='tight', dpi=150)
 
 """
 # une fois le batch size trouvé ont le test sur 100 epoch
