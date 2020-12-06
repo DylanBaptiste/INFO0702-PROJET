@@ -80,8 +80,8 @@ for batch_size in batchs_size:
     model = load_model('Trained_FC\\FCtrain.model')
     print("[INFO] chargement fini.")
     
-    # degelé toutes les couches sauf la premiere
-    for layer in model.layers[1:]:
+    # degelé toutes les couches sauf les premieres
+    for layer in model.layers[249:]:
         layer.trainable = True
     
     # compiler le nouveau model
